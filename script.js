@@ -15,6 +15,7 @@ rawData = results.data.map(row => ({
 	  cop: Number(row["COP"]),
 	  huomautus: row["Huomautus"]
 	})).filter(r => !isNaN(r.ulko));
+
     initControls();
     updateCharts();
   }
@@ -103,4 +104,34 @@ function drawPowerChart(data, pump, water) {
   const trace = {
     x: data.map(d => d.ulko),
     y: data.map(d => d.tuotto),
+    mode: "lines+markers",
+    name: pump,
+    line: {
+      shape: "spline",
+      smoothing: 0.6,
+      width: 4
+    },
+    marker: {
+      size: 8
+    }
+  };
+
+  Plotly.newPlot("powerChart", [trace], {
+    title: `${pump} – Tuotto (${water})`,
+    paper_bgcolor: "#1f2937",
+    plot_bgcolor: "#1f2937",
+    font: {
+      color: "white"
+    },
+    xaxis: {
+      title: "Ulkolämpötila °C",
+      gridcolor: "#374151"
+    },
+    yaxis: {
+      title: "Tuotto kW",
+      gridcolor: "#374151"
+    }
+  }, {
+    responsive: true
+  });
 }
