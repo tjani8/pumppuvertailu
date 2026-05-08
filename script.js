@@ -6,7 +6,7 @@ Papa.parse("data.csv", {
   complete: function(results) {
 	console.log(results.data);
 
-    rawData = results.data.map(row => ({
+rawData = results.data.map(row => ({
 	  pumppu: row["Pumppu"],
 	  vesi: row["Vesi"],
 	  ulko: Number(row["Ulko"]),
@@ -15,11 +15,12 @@ Papa.parse("data.csv", {
 	  cop: Number(row["COP"]),
 	  huomautus: row["Huomautus"]
 	})).filter(r => !isNaN(r.ulko));
-
     initControls();
     updateCharts();
   }
 });
+
+console.log(rawData);
 
 function initControls() {
 
@@ -94,4 +95,12 @@ function drawCopChart(data, pump, water) {
     }
   }, {
     responsive: true
+  });
+}
+
+function drawPowerChart(data, pump, water) {
+
+  const trace = {
+    x: data.map(d => d.ulko),
+    y: data.map(d => d.tuotto),
 }
