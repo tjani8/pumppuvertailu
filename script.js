@@ -4,10 +4,11 @@ Papa.parse("data.csv", {
   download: true,
   header: true,
   complete: function(results) {
+	console.log(results.data);
 
     rawData = results.data.map(row => ({
       pumppu: row["Pumppu"],
-      vesi: row["vesi"],
+      vesi: row["Vesi"],
       ulko: Number(row["Ulko"]),
       tuotto: Number(row["Tuotto"]),
       input: Number(row["Input"]),
