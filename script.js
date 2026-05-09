@@ -9,6 +9,25 @@ const comparisonColors = [
   "#facc15"
 ];
 
+document.getElementById("shareButton")
+  .addEventListener("click", copyShareLink);
+
+function copyShareLink() {
+
+  navigator.clipboard.writeText(window.location.href);
+
+  const button = document.getElementById("shareButton");
+
+  const originalText = button.textContent;
+
+  button.textContent = "Linkki kopioitu ✓";
+
+  setTimeout(() => {
+    button.textContent = originalText;
+  }, 2000);
+}
+
+
 Papa.parse("data.csv", {
   download: true,
   header: true,
