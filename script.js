@@ -199,8 +199,8 @@ function initControls() {
 
 function applyDefaultSelections() {
   const defaults = [
-    "Panasonic 12 kW T-CAP WH-MXC12J9E8",
-	"Power World PW050-DKZLRS-E",
+    "WH-MXC12J9E8",
+	"PW050-DKZLRS-E/S,1/3-v, MAX",
   ];
 
   defaults.forEach((search, index) => {
