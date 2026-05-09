@@ -329,6 +329,12 @@ function drawCopChart(selections) {
   });
 
   Plotly.newPlot("copChart", traces, {
+	  
+	layout: {
+	  hovermode: "closest",
+	  hoverdistance: 30,
+	  spikedistance: -1
+	}
 
     dragmode: false,
 
@@ -357,6 +363,7 @@ function drawCopChart(selections) {
     xaxis: {
       title: "Ulkolämpötila °C",
       gridcolor: "#8e9aad",
+	  zeroline: false
 	  dtick: 5,
 	  minor: {
   	    dtick: 1,
@@ -438,6 +445,12 @@ function drawPowerChart(selections) {
   Plotly.newPlot("powerChart", traces, {
 
     dragmode: false,
+	
+	layout: {
+	  hovermode: "closest",
+	  hoverdistance: 30,
+	  spikedistance: -1
+	}
 
     title: "Teho",
 
@@ -464,6 +477,7 @@ function drawPowerChart(selections) {
     xaxis: {
       title: "Ulkolämpötila °C",
       gridcolor: "#8e9aad",
+	  zeroline: false
 	  dtick: 5,
 	  minor: {
   	    dtick: 1,
@@ -513,7 +527,7 @@ function enableTraceHighlight(chartId) {
         update.opacity.push(1.0);
         update["line.width"].push(6);
       } else {
-        update.opacity.push(0.15);
+        update.opacity.push(0.5);
         update["line.width"].push(3);
       }
     }
