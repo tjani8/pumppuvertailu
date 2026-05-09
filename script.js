@@ -13,6 +13,18 @@ const comparisonColors = [
   "#facc15"
 ];
 
+const theme = {
+
+  paperBg: "#18251f",
+  plotBg: "#18251f",
+
+  gridMajor: "#486357",
+  gridMinor: "#30443b",
+
+  text: "#ffffff",
+
+};
+
 document.getElementById("shareButton")
   .addEventListener("click", copyShareLink);
 
@@ -411,12 +423,12 @@ function drawCopChart(selections) {
 
     title: "COP",
 
-    paper_bgcolor: "#1c2a24",
-    plot_bgcolor: "#1c2a24",
+    paper_bgcolor: theme.paperBg,
+	plot_bgcolor: theme.plotBg,
 
     font: {
-      color: "white"
-    },
+	  color: theme.text
+	},
 
     legend: {
 	  orientation: "h",
@@ -428,23 +440,23 @@ function drawCopChart(selections) {
 
     xaxis: {
       title: "Ulkolämpötila °C",
-      gridcolor: "#486357",
+      gridcolor: theme.gridMajor,
 	  zeroline: false,
 	  dtick: 5,
 	  // minor: {
   	    // dtick: 1,
-		// gridcolor: "#30443b",
+		// gridcolor: theme.gridMinor,
 		// showgrid: true
 	  // }
     },
 
     yaxis: {
       title: "COP",
-      gridcolor: "#486357",
+      gridcolor: theme.gridMajor,
 	  dtick: 1,
 	  minor: {
 	    dtick: 0.5,
-		gridcolor: "#30443b",
+		gridcolor: theme.gridMinor,
 		showgrid: true
 	  }
     }
@@ -506,12 +518,12 @@ function drawPowerChart(selections) {
 
     title: "Teho",
 
-    paper_bgcolor: "#18251f",
-    plot_bgcolor: "#18251f",
+    paper_bgcolor: theme.paperBg,
+	plot_bgcolor: theme.plotBg,
 
     font: {
-      color: "white"
-    },
+  	  color: theme.text
+	},
 
     legend: {
 	  orientation: "h",
@@ -523,23 +535,23 @@ function drawPowerChart(selections) {
 
     xaxis: {
       title: "Ulkolämpötila °C",
-      gridcolor: "#486357",
+      gridcolor: theme.gridMajor,
 	  zeroline: false,
 	  dtick: 5,
 	  // minor: {
   	    // dtick: 1,
-		// gridcolor: "#30443b",
+		// gridcolor: theme.gridMinor,
 		// showgrid: true
 	  // }
     },
 
     yaxis: {
       title: "Teho kW",
-      gridcolor: "#486357",
+      gridcolor: theme.gridMajor,
 	  dtick: 2,
 	  minor: {
 	    dtick: 1,
-		gridcolor: "#30443b",
+		gridcolor: theme.gridMinor,
 		showgrid: true
 	  }
     }

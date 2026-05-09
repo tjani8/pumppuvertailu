@@ -1,15 +1,13 @@
 :root {
-  --accent: #1c9c4b;
-  --accent-hover: #095725;
+  --accent: #22c55e;
+  --accent-hover: #4ade80;
 
-  --bg-main: #0f1f16;
+  --bg-main: #0f1720;
   --bg-card: #18251f;
   --bg-input: #2d3f35;
 
   --text-main: white;
   --text-muted: #9ca3af;
-
-  --grid: #8e9aad;
 }
 
 
