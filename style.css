@@ -2,9 +2,9 @@
   --accent: #1c9c4b;
   --accent-hover: #095725;
 
-  --bg-main: #0f2416;
-  --bg-card: #1c2a24;
-  --bg-input:  #314238;
+  --bg-main: #0f1f16;
+  --bg-card: #18251f;
+  --bg-input: #2d3f35;
 
   --text-main: white;
   --text-muted: #9ca3af;
@@ -233,5 +233,12 @@ input,
 select,
 button {
   font-family: inherit;
+}
+
+.control-card,
+.chart-card,
+.info-card {
+  background: var(--bg-card);
+  box-shadow: 0 0 0 1px rgba(74, 222, 128, 0.12);
 }
 
