@@ -119,10 +119,15 @@ function initControls() {
 	});
   }
 
-  document.getElementById("pumpSelect0").value = pumps[0] || "";
-  updateWaterOptions(0);
+  if (window.location.search) {
+    applySelectionsFromUrl();
+  } else {
+    document.getElementById("pumpSelect0").value = pumps[0] || "";
+    updateWaterOptions(0);
+  }
 
   updateCharts();
+
 }
 
 function refreshPumpOptions(index) {
@@ -222,6 +227,44 @@ function updateNote(index) {
     : "";
 }
 
+function applySelectionsFromUrl() {
+  const params = new URLSearchParams(window.location.search);
+
+  for (let i = 0; i < 6; i++) {
+    const pump = params.get(`p${i + 1}`);
+    const water = params.get(`w${i + 1}`);
+
+    if (!pump) continue;
+
+    const pumpSelect = document.getElementById(`pumpSelect${i}`);
+    const waterSelect = document.getElementById(`waterSelect${i}`);
+
+    pumpSelect.value = pump;
+    updateWaterOptions(i);
+
+    if (water) {
+      waterSelect.value = water;
+    }
+  }
+}
+
+function updateUrlFromSelections() {
+  const params = new URLSearchParams();
+
+  for (let i = 0; i < 6; i++) {
+    const pump = document.getElementById(`pumpSelect${i}`).value;
+    const water = document.getElementById(`waterSelect${i}`).value;
+
+    if (pump && water) {
+      params.set(`p${i + 1}`, pump);
+      params.set(`w${i + 1}`, water);
+    }
+  }
+
+  const newUrl = `${window.location.pathname}?${params.toString()}`;
+  window.history.replaceState({}, "", newUrl);
+}
+
 function updateCharts() {
   const selections = [];
 
@@ -239,8 +282,9 @@ function updateCharts() {
     }
   }
 
-  drawCopChart(selections);
   drawPowerChart(selections);
+  drawCopChart(selections);
+  updateUrlFromSelections();
 }
 
 function drawCopChart(selections) {
@@ -268,7 +312,7 @@ function drawCopChart(selections) {
         "<b>%{fullData.name}</b><br>" +
         "Ulko: %{x}°C<br>" +
         "COP: %{y:.2f}<br>" +
-		"Tuotto: %{customdata[0]:.1f} kW<extra></extra>",
+		"Teho: %{customdata[0]:.1f} kW<extra></extra>",
 
       line: {
         shape: "spline",
@@ -288,7 +332,7 @@ function drawCopChart(selections) {
 
     dragmode: false,
 
-    title: "COP vertailu",
+    title: "COP",
 
     paper_bgcolor: "#1f2937",
     plot_bgcolor: "#1f2937",
@@ -352,7 +396,7 @@ function drawPowerChart(selections) {
       hovertemplate:
         "<b>%{fullData.name}</b><br>" +
         "Ulko: %{x}°C<br>" +
-        "Tuotto: %{y:.1f} kW<br>" +
+        "Teho: %{y:.1f} kW<br>" +
 		"COP: %{customdata[0]:.2f}<extra></extra>",
 
       line: {
@@ -380,7 +424,7 @@ function drawPowerChart(selections) {
 
     dragmode: false,
 
-    title: "Tuotto vertailu",
+    title: "Teho",
 
     paper_bgcolor: "#1f2937",
     plot_bgcolor: "#1f2937",
@@ -408,7 +452,7 @@ function drawPowerChart(selections) {
     },
 
     yaxis: {
-      title: "Tuotto kW",
+      title: "Teho kW",
       gridcolor: "#374151"
     }
 
