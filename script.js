@@ -271,10 +271,10 @@ function drawPowerChart(selections) {
     },
 
     legend: {
-      orientation: "h"
+	  orientation: "h",
 	  x: 0,
 	  y: -0.25
-    },
+	},
 	
 	margin: {
 	    l: 70,
