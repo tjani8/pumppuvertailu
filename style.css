@@ -193,3 +193,10 @@ select {
 .info-card strong {
   color: white;
 }
+
+.subtitle {
+  font-size: 0.45em;
+  font-weight: normal;
+  color: #9ca3af;
+  margin-left: 10px;
+}
