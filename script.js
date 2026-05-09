@@ -1,4 +1,5 @@
 let rawData = [];
+let allPumps = [];
 
 Papa.parse("data.csv", {
   download: true,
@@ -27,10 +28,12 @@ function initControls() {
   const controls = document.getElementById("comparisonControls");
 
   controls.innerHTML = "";
-
-  const pumps = [...new Set(rawData.map(r => r.pumppu))]
+  
+  allPumps = [...new Set(rawData.map(r => r.pumppu))]
     .filter(Boolean)
     .sort();
+
+  const pumps = allPumps;
 
   for (let i = 0; i < 6; i++) {
     const row = document.createElement("div");
@@ -38,6 +41,11 @@ function initControls() {
 
     const label = document.createElement("label");
     label.textContent = `Pumppu ${i + 1}`;
+	
+	const filterInput = document.createElement("input");
+	filterInput.id = `pumpFilter${i}`;
+	filterInput.className = "pump-filter";
+	filterInput.placeholder = "Suodata pumppuja...";
 
     const pumpSelect = document.createElement("select");
     pumpSelect.id = `pumpSelect${i}`;
@@ -60,10 +68,15 @@ function initControls() {
     waterSelect.className = "water-select";
 
     row.appendChild(label);
+	row.appendChild(filterInput);
     row.appendChild(pumpSelect);
     row.appendChild(waterSelect);
 
     controls.appendChild(row);
+	
+	filterInput.addEventListener("input", () => {
+	  refreshPumpOptions(i);
+	});
 
     pumpSelect.addEventListener("change", () => {
       updateWaterOptions(i);
@@ -76,6 +89,41 @@ function initControls() {
   document.getElementById("pumpSelect0").value = pumps[0] || "";
   updateWaterOptions(0);
 
+  updateCharts();
+}
+
+function refreshPumpOptions(index) {
+  const filterInput = document.getElementById(`pumpFilter${index}`);
+  const pumpSelect = document.getElementById(`pumpSelect${index}`);
+
+  const filterText = filterInput.value.toLowerCase().trim();
+  const previousPump = pumpSelect.value;
+
+  const filteredPumps = allPumps.filter(pump =>
+    pump.toLowerCase().includes(filterText)
+  );
+
+  pumpSelect.innerHTML = "";
+
+  const emptyPump = document.createElement("option");
+  emptyPump.value = "";
+  emptyPump.textContent = "Ei valintaa";
+  pumpSelect.appendChild(emptyPump);
+
+  filteredPumps.forEach(pump => {
+    const option = document.createElement("option");
+    option.value = pump;
+    option.textContent = pump;
+    pumpSelect.appendChild(option);
+  });
+
+  if (filteredPumps.includes(previousPump)) {
+    pumpSelect.value = previousPump;
+  } else {
+    pumpSelect.value = "";
+  }
+
+  updateWaterOptions(index);
   updateCharts();
 }
 

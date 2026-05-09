@@ -53,6 +53,16 @@ select {
   box-sizing: border-box;
 }
 
+.pump-filter {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  background: #374151;
+  color: white;
+}
+
 .chart-card {
   background: #1f2937;
   border-radius: 16px;
