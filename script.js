@@ -2,6 +2,8 @@ let rawData = [];
 let allPumps = [];
 let visibleComparisons = 2;
 const maxComparisons = 6;
+const csvUrl =
+  "https://docs.google.com/spreadsheets/d/e/2PACX-1vTzUjGukV__4N0fx4mUCQuTIt_Fskg7jPqHNawq_bF2H4cA4i_ur5nyw9QPtyptMfe8PaRHl4upB1HS/pub?gid=893857219&single=true&output=csv";
 const comparisonColors = [
   "#60a5fa",
   "#fb923c",
@@ -31,11 +33,10 @@ function copyShareLink() {
 
 
 // Papa.parse("data.csv", {
-Papa.parse("https://docs.google.com/spreadsheets/d/e/2PACX-1vTzUjGukV__4N0fx4mUCQuTIt_Fskg7jPqHNawq_bF2H4cA4i_ur5nyw9QPtyptMfe8PaRHl4upB1HS/pub?gid=893857219&single=true&output=csv", {
+Papa.parse(csvUrl, {
   download: true,
   header: true,
   complete: function(results) {
-	console.log(results.data);
 
 	rawData = results.data.map(row => ({
 	  pumppu: row["Pumppu"],
@@ -47,10 +48,8 @@ Papa.parse("https://docs.google.com/spreadsheets/d/e/2PACX-1vTzUjGukV__4N0fx4mUC
 	  huomautus: row["Huomautus"]
 	})).filter(r => !isNaN(r.ulko));
 	
-	console.log(rawData);
 	
     initControls();
-    updateCharts();
 	updateInfoCard();
   }
 });
@@ -245,11 +244,12 @@ function updateWaterOptions(index) {
   waterSelect.innerHTML = "";
 
   if (!selectedPump) {
-    const option = document.createElement("option");
-    option.value = "";
-    option.textContent = "-";
-    waterSelect.appendChild(option);
-    return;
+	const option = document.createElement("option");
+	option.value = "";
+	option.textContent = "-";
+	waterSelect.appendChild(option);
+	updateNote(index);
+	return;
   }
 
   const waters = [...new Set(
@@ -314,6 +314,7 @@ function applySelectionsFromUrl() {
 
     if (water) {
       waterSelect.value = water;
+	  updateNote(i);
     }
   }
 }
@@ -331,7 +332,11 @@ function updateUrlFromSelections() {
     }
   }
 
-  const newUrl = `${window.location.pathname}?${params.toString()}`;
+  const query = params.toString();
+  const newUrl = query
+	? `${window.location.pathname}?${query}`
+	: window.location.pathname;
+
   window.history.replaceState({}, "", newUrl);
 }
 
@@ -399,12 +404,7 @@ function drawCopChart(selections) {
     };
   });
 
-  Plotly.newPlot("copChart", traces, {
-	  
-	// hovermode: "closest",
-	// hoverdistance: 30,
-	// spikedistance: -1,
-	
+  Plotly.newPlot("copChart", traces, {	
 
     dragmode: false,
 	showlegend: false,
@@ -423,14 +423,7 @@ function drawCopChart(selections) {
 	  x: 0,
 	  y: -0.25
 	},
-	
-	// margin: {
-	    // l: 70,
-		// r: 30,
-		// t: 70,
-		// b: 130
-	// },
-	
+		
 	margin: getChartMargin(),
 
     xaxis: {
@@ -462,9 +455,7 @@ function drawCopChart(selections) {
     scrollZoom: false,
     doubleClick: false
   });
-  
-  // enableTraceHighlight("copChart");
-  
+    
 }
 
 function drawPowerChart(selections) {
@@ -512,12 +503,6 @@ function drawPowerChart(selections) {
 
     dragmode: false,
 	showlegend: false,
-	
-	
-	// hovermode: "closest",
-	// hoverdistance: 30,
-	// spikedistance: -1,
-	
 
     title: "Teho",
 
@@ -533,14 +518,7 @@ function drawPowerChart(selections) {
 	  x: 0,
 	  y: -0.25
 	},
-	
-	// margin: {
-	    // l: 70,
-		// r: 30,
-		// t: 70,
-		// b: 130
-	// },
-	
+		
 	margin: getChartMargin(),
 
     xaxis: {
@@ -573,51 +551,7 @@ function drawPowerChart(selections) {
     doubleClick: false
   });
   
-  // enableTraceHighlight("powerChart");  
 }
-
-
-// --------HOOVER LINE KOROSTUS-------
-
-// function enableTraceHighlight(chartId) {
-
-  // const chart = document.getElementById(chartId);
-
-  // chart.on("plotly_hover", function(eventData) {
-
-    // const hoveredTrace = eventData.points[0].curveNumber;
-    // const traceCount = chart.data.length;
-
-    // const update = {
-      // opacity: [],
-      // "line.width": []
-    // };
-
-    // for (let i = 0; i < traceCount; i++) {
-      // if (i === hoveredTrace) {
-        // update.opacity.push(1.0);
-        // update["line.width"].push(6);
-      // } else {
-        // update.opacity.push(0.5);
-        // update["line.width"].push(3);
-      // }
-    // }
-
-    // Plotly.restyle(chart, update);
-  // });
-
-  // chart.on("plotly_unhover", function() {
-
-    // const traceCount = chart.data.length;
-
-    // const update = {
-      // opacity: Array(traceCount).fill(1),
-      // "line.width": Array(traceCount).fill(4)
-    // };
-
-    // Plotly.restyle(chart, update);
-  // });
-// }
 
 
 function drawCustomLegend(selections) {
@@ -727,7 +661,7 @@ function updateInfoCard() {
 
   const pointCount = rawData.filter(r =>
     !isNaN(r.ulko) &&
-    (!isNaN(r.cop) || !isNaN(r.tuotto))
+    (!isNaN(r.cop) || !isNaN(r.teho))
   ).length;
 
   infoCard.innerHTML = `
