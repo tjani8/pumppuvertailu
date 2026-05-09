@@ -258,6 +258,7 @@ function drawCopChart(selections) {
     return {
       x: pumpData.map(d => d.ulko),
       y: pumpData.map(d => d.cop),
+	  z: pumpData.map(d => d.tuotto),
 
       mode: "lines+markers",
 
@@ -266,17 +267,18 @@ function drawCopChart(selections) {
       hovertemplate:
         "<b>%{fullData.name}</b><br>" +
         "Ulko: %{x}°C<br>" +
-        "COP: %{y:.2f}<extra></extra>",
+        "COP: %{y:.2f}<br>"+
+		"Tuotto: %{z:.1f} kW<extra></extra>",
 
       line: {
         shape: "spline",
         smoothing: 0.6,
-        width: 4
+        width: 4,
 		color: selection.color
       },
 
       marker: {
-        size: 8
+        size: 8,
 		color: selection.color
       }
     };
@@ -341,6 +343,7 @@ function drawPowerChart(selections) {
     return {
       x: pumpData.map(d => d.ulko),
       y: pumpData.map(d => d.tuotto),
+	  z: pumpData.map(d => d.cop),
 
       mode: "lines+markers",
 
@@ -349,17 +352,18 @@ function drawPowerChart(selections) {
       hovertemplate:
         "<b>%{fullData.name}</b><br>" +
         "Ulko: %{x}°C<br>" +
-        "Tuotto: %{y:.1f} kW<extra></extra>",
+        "Tuotto: %{y:.1f} kW<br>" +
+		"COP: % {z:.1f}<extra></extra>",
 
       line: {
         shape: "spline",
         smoothing: 0.6,
-        width: 4
+        width: 4,
 		color: selection.color
       },
 
       marker: {
-        size: 8
+        size: 8,
 		color: selection.color
       },
 	  
