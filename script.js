@@ -618,7 +618,7 @@ function resetTraceHighlight() {
 function getChartMargin() {
   if (window.innerWidth < 700) {
     return {
-      l: 45,
+      l: 25,
       r: 10,
       t: 60,
       b: 80
@@ -629,6 +629,6 @@ function getChartMargin() {
     l: 70,
     r: 30,
     t: 70,
-    b: 130
+    b: 80
   };
 }
