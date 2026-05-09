@@ -506,8 +506,8 @@ function drawPowerChart(selections) {
 
     title: "Teho",
 
-    paper_bgcolor: "#1f2937",
-    plot_bgcolor: "#1f2937",
+    paper_bgcolor: "#1c2a24",
+    plot_bgcolor: "#1c2a24",
 
     font: {
       color: "white"

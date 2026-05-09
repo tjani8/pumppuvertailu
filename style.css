@@ -1,6 +1,6 @@
 :root {
-  --accent: #22c55e;
-  --accent-hover: #4ade80;
+  --accent: #1c9c4b;
+  --accent-hover: #095725;
 
   --bg-main: #0f1720;
   --bg-card: #1c2a24;
@@ -235,8 +235,3 @@ button {
   font-family: inherit;
 }
 
-.control-card,
-.chart-card,
-.info-card {
-  box-shadow: 0 0 0 1px rgba(34, 197, 94, 0.08);
-}
