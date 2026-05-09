@@ -328,8 +328,8 @@ function drawCopChart(selections) {
     };
   });
 
-  Plotly.newPlot("copChart", traces, {
-	  
+  Plotly.newPlot("copChart", traces, layout, config);
+
 	enableTraceHighlight("copChart");
 
     dragmode: false,
@@ -434,8 +434,9 @@ function drawPowerChart(selections) {
     };
   });
 
-  Plotly.newPlot("powerChart", traces, {
-	  
+
+  Plotly.newPlot("powerChart", traces, layout, config);
+
 	enableTraceHighlight("powerChart");
 
     dragmode: false,
