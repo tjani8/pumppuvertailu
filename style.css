@@ -1,8 +1,23 @@
+:root {
+  --accent: #22c55e;
+  --accent-hover: #4ade80;
+
+  --bg-main: #111827;
+  --bg-card: #1f2937;
+  --bg-input: #374151;
+
+  --text-main: white;
+  --text-muted: #9ca3af;
+
+  --grid: #8e9aad;
+}
+
+
 body {
   margin: 0;
   padding: 0;
-  background: #111827;
-  color: white;
+  background: var(--bg-main);
+  color: var(--text-main);
   font-family: Arial, sans-serif;
 }
 
@@ -25,7 +40,7 @@ h1 {
 }
 
 .control-card {
-  background: #1f2937;
+  background: var(--bg-card);
   padding: 16px;
   border-radius: 14px;
   min-width: 0;
@@ -40,7 +55,7 @@ h1 {
 label {
   display: block;
   margin-bottom: 8px;
-  color: #9ca3af;
+  color: var(--text-muted);
 }
 
 select {
@@ -48,8 +63,8 @@ select {
   padding: 10px;
   border-radius: 8px;
   border: none;
-  background: #374151;
-  color: white;
+  background:  var(--bg-input);
+  color: var(--text-main);
   box-sizing: border-box;
 }
 
@@ -64,8 +79,8 @@ select {
   padding: 10px 38px 10px 10px;
   border-radius: 8px;
   border: none;
-  background: #374151;
-  color: white;
+  background:  var(--bg-input);
+  color: var(--text-main);
 }
 
 .clear-filter {
@@ -91,7 +106,7 @@ select {
 }
 
 .chart-card {
-  background: #1f2937;
+  background: var(--bg-card);
   border-radius: 16px;
   padding: 10px;
   margin-bottom: 20px;
@@ -170,7 +185,7 @@ select {
 }
 
 button {
-  background: #2563eb;
+  background: var(--accent);
   color: white;
   border: none;
   border-radius: 10px;
@@ -180,7 +195,7 @@ button {
 }
 
 button:hover {
-  background: #3b82f6;
+  background: var(--accent-hover);
 }
 
 #addComparisonButton {
@@ -192,7 +207,7 @@ button:hover {
 }
 
 .info-card {
-  background: #1f2937;
+  background: var(--bg-card);
   border-radius: 14px;
   padding: 16px;
   margin-top: 20px;
@@ -208,13 +223,13 @@ button:hover {
 .subtitle {
   font-size: 0.45em;
   font-weight: normal;
-  color: #9ca3af;
+  color: var(--text-muted);
   margin-left: 10px;
 }
 
 input:focus,
 select:focus {
-  outline: 2px solid #60a5fa;
+  outline: 2px solid  var(--accent);
   outline-offset: 2px;
 }
 

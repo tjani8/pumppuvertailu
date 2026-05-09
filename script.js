@@ -428,23 +428,23 @@ function drawCopChart(selections) {
 
     xaxis: {
       title: "Ulkolämpötila °C",
-      gridcolor: "#8e9aad",
+      gridcolor: "#3f5f4f",
 	  zeroline: false,
 	  dtick: 5,
 	  // minor: {
   	    // dtick: 1,
-		// gridcolor: "#374151",
+		// gridcolor: "#2b4438",
 		// showgrid: true
 	  // }
     },
 
     yaxis: {
       title: "COP",
-      gridcolor: "#8e9aad",
+      gridcolor: "#3f5f4f",
 	  dtick: 1,
 	  minor: {
 	    dtick: 0.5,
-		gridcolor: "#374151",
+		gridcolor: "#2b4438",
 		showgrid: true
 	  }
     }
@@ -523,23 +523,23 @@ function drawPowerChart(selections) {
 
     xaxis: {
       title: "Ulkolämpötila °C",
-      gridcolor: "#8e9aad",
+      gridcolor: "#3f5f4f",
 	  zeroline: false,
 	  dtick: 5,
 	  // minor: {
   	    // dtick: 1,
-		// gridcolor: "#374151",
+		// gridcolor: "#2b4438",
 		// showgrid: true
 	  // }
     },
 
     yaxis: {
       title: "Teho kW",
-      gridcolor: "#8e9aad",
+      gridcolor: "#3f5f4f",
 	  dtick: 2,
 	  minor: {
 	    dtick: 1,
-		gridcolor: "#374151",
+		gridcolor: "#2b4438",
 		showgrid: true
 	  }
     }
