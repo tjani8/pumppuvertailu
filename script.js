@@ -1,5 +1,13 @@
 let rawData = [];
 let allPumps = [];
+const comparisonColors = [
+  "#60a5fa",
+  "#fb923c",
+  "#34d399",
+  "#a78bfa",
+  "#f87171",
+  "#facc15"
+];
 
 Papa.parse("data.csv", {
   download: true,
@@ -38,6 +46,7 @@ function initControls() {
   for (let i = 0; i < 6; i++) {
     const row = document.createElement("div");
     row.className = "control-card comparison-row";
+	row.style.borderLeft = `6px solid ${comparisonColors[i]}`;
 
     const label = document.createElement("label");
     label.textContent = `Pumppu ${i + 1}`;
@@ -221,7 +230,12 @@ function updateCharts() {
     const water = document.getElementById(`waterSelect${i}`).value;
 
     if (pump && water) {
-      selections.push({ pump, water });
+      selections.push({
+		pump,
+		water,
+		color: comparisonColors[i],
+		index: i
+	  });
     }
   }
 
@@ -258,10 +272,12 @@ function drawCopChart(selections) {
         shape: "spline",
         smoothing: 0.6,
         width: 4
+		color: selection.color
       },
 
       marker: {
         size: 8
+		color: selection.color
       }
     };
   });
@@ -339,10 +355,12 @@ function drawPowerChart(selections) {
         shape: "spline",
         smoothing: 0.6,
         width: 4
+		color: selection.color
       },
 
       marker: {
         size: 8
+		color: selection.color
       },
 	  
 	  margin: {
