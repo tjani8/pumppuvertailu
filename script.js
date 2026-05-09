@@ -156,28 +156,20 @@ function initControls() {
   }
 
   if (window.location.search) {
-	updateVisibleComparisonsFromUrl();
-	applySelectionsFromUrl();
-  } else {
-	const defaults = [
-	  "Panasonic 12 kW T-CAP WH-MXC12J9E8",
-	  "Power World PW050-DKZLRS-E",
-	];
+	  updateVisibleComparisonsFromUrl();
+	  applySelectionsFromUrl();
 
-	defaults.forEach((search, index) => {
-	  const pumpSelect = document.getElementById(`pumpSelect${index}`);
-	  if (!pumpSelect) return;
+	  const hasAnySelection = [...Array(maxComparisons).keys()].some(i =>
+		document.getElementById(`pumpSelect${i}`).value
+	  );
 
-	  const match = [...pumpSelect.options].find(option =>
-			option.value.includes(search)
-		  );
-
-	  if (match) {
-		pumpSelect.value = match.value;
-		updateWaterOptions(index);
+	  if (!hasAnySelection) {
+		applyDefaultSelections();
 	  }
-	});
-  }
+
+	} else {
+	  applyDefaultSelections();
+	}
   
   document.getElementById("addComparisonButton")
   .addEventListener("click", () => {
@@ -199,10 +191,31 @@ function initControls() {
         ).style.display = "none";
       }
     }
-  updateCharts();
+	updateCharts();
   });
   
   updateCharts();
+}
+
+function applyDefaultSelections() {
+  const defaults = [
+    "Panasonic 12 kW T-CAP WH-MXC12J9E8",
+	"Power World PW050-DKZLRS-E",
+  ];
+
+  defaults.forEach((search, index) => {
+    const pumpSelect = document.getElementById(`pumpSelect${index}`);
+    if (!pumpSelect) return;
+
+    const match = [...pumpSelect.options].find(option =>
+      option.value.toLowerCase().includes(search.toLowerCase())
+    );
+
+    if (match) {
+      pumpSelect.value = match.value;
+      updateWaterOptions(index);
+    }
+  });
 }
 
 function refreshPumpOptions(index) {
