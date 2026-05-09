@@ -15,8 +15,8 @@ const comparisonColors = [
 
 const theme = {
 
-  paperBg: "#18251f",
-  plotBg: "#18251f",
+  paperBg: "#29693f",
+  plotBg: "#29693f",
 
   gridMajor: "#486357",
   gridMinor: "#30443b",
