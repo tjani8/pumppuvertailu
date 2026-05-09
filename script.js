@@ -178,9 +178,6 @@ function initControls() {
 	  }
 	});
   }
-
-
-  updateCharts();
   
   document.getElementById("addComparisonButton")
   .addEventListener("click", () => {
@@ -204,7 +201,8 @@ function initControls() {
     }
   updateCharts();
   });
-
+  
+  updateCharts();
 }
 
 function refreshPumpOptions(index) {
