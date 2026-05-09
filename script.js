@@ -373,12 +373,14 @@ function drawCopChart(selections) {
 	  y: -0.25
 	},
 	
-	margin: {
-	    l: 70,
-		r: 30,
-		t: 70,
-		b: 130
-	},
+	// margin: {
+	    // l: 70,
+		// r: 30,
+		// t: 70,
+		// b: 130
+	// },
+	
+	margin: getChartMargin(),
 
     xaxis: {
       title: "Ulkolämpötila °C",
@@ -451,14 +453,7 @@ function drawPowerChart(selections) {
       marker: {
         size: 8,
 		color: selection.color
-      },
-	  
-	  margin: {
-	    l: 70,
-		r: 30,
-		t: 70,
-		b: 130
-	  }	  
+      }, 
     };
   });
 
@@ -466,6 +461,7 @@ function drawPowerChart(selections) {
 
     dragmode: false,
 	showlegend: false,
+	
 	
 	// hovermode: "closest",
 	// hoverdistance: 30,
@@ -487,12 +483,14 @@ function drawPowerChart(selections) {
 	  y: -0.25
 	},
 	
-	margin: {
-	    l: 70,
-		r: 30,
-		t: 70,
-		b: 130
-	},
+	// margin: {
+	    // l: 70,
+		// r: 30,
+		// t: 70,
+		// b: 130
+	// },
+	
+	margin: getChartMargin(),
 
     xaxis: {
       title: "Ulkolämpötila °C",
@@ -615,4 +613,22 @@ function resetTraceHighlight() {
       "line.width": Array(traceCount).fill(4)
     });
   });
+}
+
+function getChartMargin() {
+  if (window.innerWidth < 700) {
+    return {
+      l: 45,
+      r: 10,
+      t: 60,
+      b: 80
+    };
+  }
+
+  return {
+    l: 70,
+    r: 30,
+    t: 70,
+    b: 130
+  };
 }

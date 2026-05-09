@@ -127,6 +127,14 @@ select {
   .controls {
     grid-template-columns: 1fr;
   }
+  .container {
+    padding: 10px;
+  }
+
+  .chart-card {
+    padding: 4px;
+    border-radius: 14px;
+  }
   #copChart,
   #powerChart {
     height: 380px;
