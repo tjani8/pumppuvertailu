@@ -284,6 +284,7 @@ function updateCharts() {
 
   drawPowerChart(selections);
   drawCopChart(selections);
+  drawCustomLegend(selections);
   updateUrlFromSelections();
 }
 
@@ -336,6 +337,7 @@ function drawCopChart(selections) {
 	
 
     dragmode: false,
+	showlegend: false,
 
     title: "COP",
 
@@ -364,11 +366,11 @@ function drawCopChart(selections) {
       gridcolor: "#8e9aad",
 	  zeroline: false,
 	  dtick: 5,
-	  minor: {
-  	    dtick: 1,
-		gridcolor: "#374151",
-		showgrid: true
-	  }
+	  // minor: {
+  	    // dtick: 1,
+		// gridcolor: "#374151",
+		// showgrid: true
+	  // }
     },
 
     yaxis: {
@@ -444,6 +446,7 @@ function drawPowerChart(selections) {
   Plotly.newPlot("powerChart", traces, {
 
     dragmode: false,
+	showlegend: false,
 	
 	hovermode: "closest",
 	hoverdistance: 30,
@@ -477,11 +480,11 @@ function drawPowerChart(selections) {
       gridcolor: "#8e9aad",
 	  zeroline: false,
 	  dtick: 5,
-	  minor: {
-  	    dtick: 1,
-		gridcolor: "#374151",
-		showgrid: true
-	  }
+	  // minor: {
+  	    // dtick: 1,
+		// gridcolor: "#374151",
+		// showgrid: true
+	  // }
     },
 
     yaxis: {
@@ -543,5 +546,51 @@ function enableTraceHighlight(chartId) {
     };
 
     Plotly.restyle(chart, update);
+  });
+}
+
+function drawCustomLegend(selections) {
+  const legend = document.getElementById("customLegend");
+  legend.innerHTML = "";
+
+  selections.forEach((selection, index) => {
+    const item = document.createElement("div");
+    item.className = "legend-item";
+    item.textContent = `${selection.pump} / ${selection.water}`;
+    item.style.borderLeft = `6px solid ${selection.color}`;
+
+    item.addEventListener("mouseenter", () => {
+      highlightTrace(index);
+    });
+
+    item.addEventListener("mouseleave", () => {
+      resetTraceHighlight();
+    });
+
+    legend.appendChild(item);
+  });
+}
+
+function highlightTrace(index) {
+  ["copChart", "powerChart"].forEach(chartId => {
+    const chart = document.getElementById(chartId);
+    const traceCount = chart.data.length;
+
+    Plotly.restyle(chart, {
+      opacity: Array.from({ length: traceCount }, (_, i) => i === index ? 1 : 0.15),
+      "line.width": Array.from({ length: traceCount }, (_, i) => i === index ? 6 : 3)
+    });
+  });
+}
+
+function resetTraceHighlight() {
+  ["copChart", "powerChart"].forEach(chartId => {
+    const chart = document.getElementById(chartId);
+    const traceCount = chart.data.length;
+
+    Plotly.restyle(chart, {
+      opacity: Array(traceCount).fill(1),
+      "line.width": Array(traceCount).fill(4)
+    });
   });
 }

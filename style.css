@@ -102,3 +102,23 @@ select {
   width: 100%;
   height: 500px;
 }
+
+.custom-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 10px 0 20px 0;
+}
+
+.legend-item {
+  padding: 6px 10px;
+  border-radius: 8px;
+  background: #374151;
+  cursor: pointer;
+  font-size: 13px;
+  user-select: none;
+}
+
+.legend-item:hover {
+  background: #4b5563;
+}
