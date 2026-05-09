@@ -1,8 +1,65 @@
 # Pumppuvertailu
-Voit vertailla ilmavesilämpöpumppuja tehtaiden ilmoittaman datan pohjalta.  
-[https://tjani8.github.io/pumppuvertailu/index.html](https://tjani8.github.io/pumppuvertailu/index.html)
+[Vertailuun tästä](https://tjani8.github.io/pumppuvertailu/index.html)
 
-# Vastuuvapautus
-Arvot perustuvat valmistajien ilmoittamiin tietoihin, esitteisiin, teknisiin taulukoihin ja muuhun saatavilla olevaan aineistoon. Tiedot voivat sisältää virheitä, puutteita tai eri mittaustapojen aiheuttamia eroja.
+Selainpohjainen ilmavesilämpöpumppujen vertailutyökalu.
 
-Vertailu on tarkoitettu suuntaa-antavaksi eikä sitä tule käyttää ainoana perusteena laitevalinnalle. 
+Sivulla voi vertailla useiden eri lämpöpumppujen:
+- COP-arvoja
+- lämmitystehoa
+- eri vedenlämpötiloja
+- ulkolämpötilan vaikutusta suorituskykyyn
+
+Data visualisoidaan interaktiivisilla kuvaajilla.
+
+## Ominaisuudet
+
+- Usean pumpun samanaikainen vertailu
+- COP- ja teho-käyrät
+- Jaettavat URL-linkit valituista vertailuista
+- Mobiiliystävällinen käyttöliittymä
+- Hakusuodatus pumppulistaan
+- Datan automaattinen lataus Google Sheetsistä
+
+## Data
+
+Tiedot perustuvat valmistajien:
+- teknisiin taulukoihin
+- esitteisiin
+- EN14511-testiarvoihin
+- muuhun julkisesti saatavilla olevaan aineistoon
+
+Kaikki arvot ovat suuntaa-antavia.
+
+## Teknologiat
+
+- HTML / CSS / JavaScript
+- Plotly.js
+- PapaParse
+- Google Sheets CSV datasource
+- GitHub Pages
+
+## Käyttö
+
+1. Valitse vertailtavat pumput
+2. Valitse veden lämpötila
+3. Tarkastele COP- ja teho-käyriä
+4. Jaa vertailu linkillä
+
+## Huomio
+
+Tämä projekti ei ole kaupallinen eikä valmistajien virallinen vertailutyökalu.
+
+Tiedot voivat sisältää:
+- virheitä
+- puutteita
+- eri testimenetelmien aiheuttamia eroja
+
+## Kehitys
+
+Projektia kehitetään jatkuvasti.
+
+Parannusehdotukset ja korjaukset ovat tervetulleita.
+
+---
+
+by tjani
