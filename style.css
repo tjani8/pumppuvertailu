@@ -180,34 +180,16 @@ select {
   background: #3b82f6;
 }
 
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 14px;
-  margin-bottom: 20px;
-  max-width: 1100px;
-}
-
-.stat-card {
+.info-card {
   background: #1f2937;
   border-radius: 14px;
-  padding: 14px;
+  padding: 16px;
+  margin-top: 20px;
+  color: #d1d5db;
+  font-size: 14px;
+  line-height: 1.5;
 }
 
-.stat-label {
-  color: #9ca3af;
-  font-size: 13px;
-  margin-bottom: 6px;
-}
-
-.stat-value {
+.info-card strong {
   color: white;
-  font-size: 22px;
-  font-weight: bold;
-}
-
-@media (max-width: 700px) {
-  .stats-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
 }

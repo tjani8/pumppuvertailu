@@ -51,6 +51,7 @@ Papa.parse("https://docs.google.com/spreadsheets/d/e/2PACX-1vTzUjGukV__4N0fx4mUC
 	
     initControls();
     updateCharts();
+	updateInfoCard();
   }
 });
 
@@ -335,7 +336,6 @@ function updateCharts() {
   drawCopChart(selections);
   drawCustomLegend(selections);
   updateUrlFromSelections();
-  updateStats(selections);
 }
 
 function drawCopChart(selections) {
@@ -698,29 +698,35 @@ function updateVisibleComparisonsFromUrl() {
 }
 
 
-function updateStats(selections = []) {
-  const statsGrid = document.getElementById("statsGrid");
+function updateInfoCard() {
+  const infoCard = document.getElementById("infoCard");
 
-  const pumpCount = new Set(rawData.map(r => r.pumppu).filter(Boolean)).size;
-  const pointCount = rawData.filter(r => !isNaN(r.ulko)).length;
+  const pumpCount = new Set(
+    rawData.map(r => r.pumppu).filter(Boolean)
+  ).size;
 
-  const waters = [...new Set(rawData.map(r => r.vesi).filter(Boolean))]
-    .sort()
-    .join(", ");
+  const pointCount = rawData.filter(r =>
+    !isNaN(r.ulko) &&
+    (!isNaN(r.cop) || !isNaN(r.tuotto))
+  ).length;
 
-  const selectedCount = selections.length;
+  infoCard.innerHTML = `
+    <p>
+      Tietokannassa on tällä hetkellä 
+      <strong>${pumpCount}</strong> lämpöpumppua ja 
+      <strong>${pointCount}</strong> datapistettä.
+    </p>
 
-  const cards = [
-    { label: "Pumppuja", value: pumpCount },
-    { label: "Datapisteitä", value: pointCount },
-    { label: "Vedenlämpöjä", value: waters },
-    { label: "Valittuja", value: selectedCount }
-  ];
+    <p>
+      Arvot perustuvat valmistajien ilmoittamiin tietoihin, esitteisiin,
+      teknisiin taulukoihin ja muuhun saatavilla olevaan aineistoon.
+      Tiedot voivat sisältää virheitä, puutteita tai eri mittaustapojen
+      aiheuttamia eroja.
+    </p>
 
-  statsGrid.innerHTML = cards.map(card => `
-    <div class="stat-card">
-      <div class="stat-label">${card.label}</div>
-      <div class="stat-value">${card.value}</div>
-    </div>
-  `).join("");
+    <p>
+      Vertailu on tarkoitettu suuntaa-antavaksi eikä sitä tule käyttää
+      ainoana perusteena laitevalinnalle.
+    </p>
+  `;
 }
