@@ -2,9 +2,9 @@
   --accent: #22c55e;
   --accent-hover: #4ade80;
 
-  --bg-main: #111827;
-  --bg-card: #1f2937;
-  --bg-input: #374151;
+  --bg-main: #0f1720;
+  --bg-card: #1c2a24;
+  --bg-input:  #314238;
 
   --text-main: white;
   --text-muted: #9ca3af;
@@ -200,10 +200,6 @@ button:hover {
 
 #addComparisonButton {
   margin-bottom: 20px;
-}
-
-#addComparisonButton:hover {
-  background: #3b82f6;
 }
 
 .info-card {
