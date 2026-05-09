@@ -2,7 +2,7 @@
   --accent: #1c9c4b;
   --accent-hover: #095725;
 
-  --bg-main: #0f1720;
+  --bg-main: #0f2416;
   --bg-card: #1c2a24;
   --bg-input:  #314238;
 
@@ -128,14 +128,14 @@ select {
 .legend-item {
   padding: 6px 10px;
   border-radius: 8px;
-  background: #374151;
+  background: var(--bg-card);
   cursor: pointer;
   font-size: 13px;
   user-select: none;
 }
 
 .legend-item:hover {
-  background: #4b5563;
+  background: var(--accent-color);
 }
 
 @media (max-width: 700px) {
