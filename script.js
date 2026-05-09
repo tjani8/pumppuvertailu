@@ -148,8 +148,28 @@ function initControls() {
 	updateVisibleComparisonsFromUrl();
 	applySelectionsFromUrl();
   } else {
-	document.getElementById("pumpSelect0").value = pumps[0] || "";
-	updateWaterOptions(0);
+	const defaults = [
+	  "Panasonic 12 kW T-CAP WH-MXC12J9E8 ",
+	  "Power World PW050-DKZLRS-E",
+	];
+
+	defaults.forEach((search, index) => {
+	  const pumpSelect =
+		document.getElementById(`pumpSelect${index}`);
+
+	  if (!pumpSelect) return;
+
+	  const match =
+		[...pumpSelect.options]
+		  .find(option =>
+			option.value.includes(search)
+		  );
+
+	  if (match) {
+		pumpSelect.value = match.value;
+		updateWaterOptions(index);
+	  }
+	});
   }
 
 
