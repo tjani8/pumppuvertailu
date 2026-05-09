@@ -1,5 +1,5 @@
 # Pumppuvertailu
-Voit vertailla ilmavesilämpöpumppuja tehtaiden ilmoittaman datan pohjalta.
+Voit vertailla ilmavesilämpöpumppuja tehtaiden ilmoittaman datan pohjalta.  
 [https://tjani8.github.io/pumppuvertailu/index.html](https://tjani8.github.io/pumppuvertailu/index.html)
 
 # Vastuuvapautus
