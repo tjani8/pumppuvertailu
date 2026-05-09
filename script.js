@@ -330,11 +330,10 @@ function drawCopChart(selections) {
 
   Plotly.newPlot("copChart", traces, {
 	  
-	layout: {
-	  hovermode: "closest",
-	  hoverdistance: 30,
-	  spikedistance: -1
-	},
+	hovermode: "closest",
+	hoverdistance: 30,
+	spikedistance: -1,
+	
 
     dragmode: false,
 
@@ -446,11 +445,10 @@ function drawPowerChart(selections) {
 
     dragmode: false,
 	
-	layout: {
-	  hovermode: "closest",
-	  hoverdistance: 30,
-	  spikedistance: -1
-	},
+	hovermode: "closest",
+	hoverdistance: 30,
+	spikedistance: -1,
+	
 
     title: "Teho",
 
