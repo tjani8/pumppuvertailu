@@ -356,7 +356,7 @@ function drawCopChart(selections) {
 
     xaxis: {
       title: "Ulkolämpötila °C",
-      gridcolor: "white"
+      gridcolor: "white",
 	  dtick: 5,
 	  minor: {
   	    dtick: 1,
