@@ -3,7 +3,7 @@ let allPumps = [];
 let visibleComparisons = 2;
 const maxComparisons = 6;
 
-const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ2eKLglTXdwv5Bk61gSEEmupN1EoJ5WQ8Dls3XAtc0fnFkgi2ITXJJFDUadwKxEZ2EO6Bj-X_6xeY5/pub?output=csv";
+// const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ2eKLglTXdwv5Bk61gSEEmupN1EoJ5WQ8Dls3XAtc0fnFkgi2ITXJJFDUadwKxEZ2EO6Bj-X_6xeY5/pub?output=csv";
 
 const comparisonColors = [
   "#60a5fa",
@@ -45,8 +45,8 @@ function copyShareLink() {
 }
 
 
-// Papa.parse("data.csv", {
-Papa.parse(csvUrl, {
+Papa.parse("data.csv", {
+// Papa.parse(csvUrl, {
   download: true,
   header: true,
   complete: function(results) {
@@ -55,9 +55,8 @@ Papa.parse(csvUrl, {
 	  pumppu: row["Pumppu"],
 	  vesi: Number(row["Vesi"]),
 	  ulko: Number(row["Ulko"]),
-	  teho: Number(row["Teho"]),
-	  input: Number(row["Input"]),
-	  cop: Number(row["COP"]),
+	  teho: parseFloat(String(row["Teho"]).replace(",", ".")),
+	  cop: parseFloat(String(row["COP"]).replace(",", ".")),
 	  huomautus: row["Huomautus"]
 	})).filter(r => !isNaN(r.ulko));
 	
