@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Pumppuvertailu</title>
+
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="container">
+
+    <div class="topbar">
+
+	  <h1>
+	  Pumppuvertailu
+	  <span class="subtitle">
+		by tjani
+	  </span>
+	</h1>
+
+	  <button id="shareButton">
+		Kopioi vertailulinkki
+	  </button>
+
+	</div>
+
+	<div class="controls" id="comparisonControls"></div>
+	<button id="addComparisonButton">
+	  + Lisää pumppu
+	</button>
+
+	<div class="chart-card">
+	  <div id="powerChart"></div>
+	</div>
+	
+	<div id="customLegend" class="custom-legend"></div>
+
+	<div class="chart-card">
+	  <div id="copChart"></div>
+	</div>
+	
+	<div class="info-card" id="infoCard"></div>
+	
+  </div>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
