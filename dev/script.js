@@ -61,13 +61,12 @@ Papa.parse(csvUrl, {
 	  huomautus: row["Huomautus"]
 	})).filter(r => !isNaN(r.ulko));
 	
+	console.log(rawData);
 	
     initControls();
 	updateInfoCard();
   }
 });
-
-console.log(rawData);
 
 function initControls() {
   const controls = document.getElementById("comparisonControls");
