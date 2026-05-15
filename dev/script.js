@@ -3,7 +3,7 @@ let allPumps = [];
 let visibleComparisons = 2;
 const maxComparisons = 6;
 
-// const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTSxw1z_hRdJPB-RaG0S8L2mYCamIzfhXjwGNKTI5I-HY_5ROisuJrS7fDlRpiBWMDQ9ZU9Gsv4VZzM/pub?gid=0&single=true&output=csv";
+const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ2eKLglTXdwv5Bk61gSEEmupN1EoJ5WQ8Dls3XAtc0fnFkgi2ITXJJFDUadwKxEZ2EO6Bj-X_6xeY5/pub?output=csv";
 
 const comparisonColors = [
   "#60a5fa",
@@ -45,8 +45,8 @@ function copyShareLink() {
 }
 
 
-Papa.parse("data.csv", {
-// Papa.parse(csvUrl, {
+// Papa.parse("data.csv", {
+Papa.parse(csvUrl, {
   download: true,
   header: true,
   complete: function(results) {
@@ -393,7 +393,6 @@ function drawCopChart(selections) {
 
       hovertemplate:
         "<b>%{fullData.name}</b><br>" +
-		"Vesi: ${selection.water} °C<br>" +
         "Ulko: %{x}°C<br>" +
         "COP: %{y:.2f}<br>" +
 		"Teho: %{customdata[0]:.1f} kW<extra></extra>",
@@ -489,7 +488,6 @@ function drawPowerChart(selections) {
 
       hovertemplate:
         "<b>%{fullData.name}</b><br>" +
-		"Vesi: ${selection.water} °C<br>" +
         "Ulko: %{x}°C<br>" +
         "Teho: %{y:.1f} kW<br>" +
 		"COP: %{customdata[0]:.2f}<extra></extra>",
