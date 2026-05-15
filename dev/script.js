@@ -67,6 +67,8 @@ Papa.parse(csvUrl, {
   }
 });
 
+console.log(rawData);
+
 function initControls() {
   const controls = document.getElementById("comparisonControls");
 
