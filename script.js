@@ -662,8 +662,16 @@ function updateVisibleComparisonsFromUrl() {
 function updateInfoCard() {
   const infoCard = document.getElementById("infoCard");
 
-  const pumpCount = new Set(
+  const curveCount = new Set(
     rawData.map(r => r.pumppu).filter(Boolean)
+  ).size;
+  
+  const pumpCount = new Set(
+    rawData.map(row =>
+        row.pumppu
+            .replace(/\s*(MIN|MAX|NORM)$/i, "")
+            .trim()
+    )
   ).size;
 
   const pointCount = rawData.filter(r =>
@@ -672,10 +680,13 @@ function updateInfoCard() {
   ).length;
 
   infoCard.innerHTML = `
+	<p>
+	  Päivitetty <strong>17.7.2026</strong>
     <p>
-      Tietokannassa on tällä hetkellä 
-      <strong>${pumpCount}</strong> lämpöpumppua ja 
-      <strong>${pointCount}</strong> datapistettä.
+      Tietokannassa:<br>
+      <strong>${pumpCount}</strong> pumppua<br>
+	  <strong>${curveCount}</strong> käyräparia<br>
+      <strong>${pointCount}</strong> datapistettä
     </p>
 
     <p>
