@@ -700,13 +700,5 @@ function updateInfoCard() {
       Vertailu on tarkoitettu suuntaa-antavaksi eikä sitä tule käyttää
       ainoana perusteena laitevalinnalle.
     </p>
-	
-	<p class="footer-links">
-    💬 <a href="https://lampopumput.info/foorumi/threads/vilp-vertailu-taulukko.36466/"
-       target="_blank"
-       rel="noopener">
-       Keskustelu lampopumput.info palstalla
-       </a>
-	</p>
   `;
 }
