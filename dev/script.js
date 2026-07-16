@@ -683,7 +683,7 @@ function updateInfoCard() {
 	<p>
 	  Päivitetty <strong>17.7.2026</strong>
     <p>
-      Tietokannassa on tällä hetkellä:<br>
+      Tietokannassa:<br>
       <strong>${pumpCount}</strong> pumppua<br>
 	  <strong>${curveCount}</strong> käyräparia<br>
       <strong>${pointCount}</strong> datapistettä
