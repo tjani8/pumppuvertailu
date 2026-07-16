@@ -20,25 +20,15 @@ Data visualisoidaan interaktiivisilla kuvaajilla.
 - Jaettavat URL-linkit valituista vertailuista
 - Mobiiliystävällinen käyttöliittymä
 - Hakusuodatus pumppulistaan
-- Datan automaattinen lataus Google Sheetsistä
 
 ## Data
 
 Tiedot perustuvat valmistajien:
 - teknisiin taulukoihin
 - esitteisiin
-- EN14511-testiarvoihin
 - muuhun julkisesti saatavilla olevaan aineistoon
 
 Kaikki arvot ovat suuntaa-antavia.
-
-## Teknologiat
-
-- HTML / CSS / JavaScript
-- Plotly.js
-- PapaParse
-- Google Sheets CSV datasource
-- GitHub Pages
 
 ## Käyttö
 
@@ -58,10 +48,8 @@ Tiedot voivat sisältää:
 
 ## Kehitys
 
-Projektia kehitetään jatkuvasti.
+Projektia kehitetään.
 
 Parannusehdotukset ja korjaukset ovat tervetulleita.
 
 ---
-
-by tjani
