@@ -681,7 +681,7 @@ function updateInfoCard() {
 
   infoCard.innerHTML = `
 	<p>
-	  Päivitetty <strong>17.7.2026</strong>
+	  Päivitetty <strong>14.11.2026</strong>
     <p>
       Tietokannassa:<br>
       <strong>${pumpCount}</strong> pumppua<br>
