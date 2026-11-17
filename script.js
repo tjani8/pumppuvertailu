@@ -162,7 +162,7 @@ function initControls() {
   } else {
 	const defaults = [
 	  "WH-MXC12J9E8",
-	  "PW050-DKZLRS-E/S,1/3-v, MAX",
+	  "PW050-DKZLRS-E/S, 1/3-v, MAX",
 	];
 
 	defaults.forEach((search, index) => {
@@ -395,7 +395,7 @@ function drawCopChart(selections) {
         "<b>%{fullData.name}</b><br>" +
         "Ulko: %{x}°C<br>" +
         "COP: %{y:.2f}<br>" +
-		"Teho: %{customdata[0]:.1f} kW<extra></extra>",
+		"Teho: %{customdata[0]:.2f} kW<extra></extra>",
 
       line: {
         shape: "spline",
@@ -489,7 +489,7 @@ function drawPowerChart(selections) {
       hovertemplate:
         "<b>%{fullData.name}</b><br>" +
         "Ulko: %{x}°C<br>" +
-        "Teho: %{y:.1f} kW<br>" +
+        "Teho: %{y:.2f} kW<br>" +
 		"COP: %{customdata[0]:.2f}<extra></extra>",
 
       line: {
