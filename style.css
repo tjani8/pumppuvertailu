@@ -254,3 +254,8 @@ button {
 .site-footer a:hover {
     text-decoration: underline;
 }
+
+/* Pump metadata, displayed under each selected pump */
+.note > div { margin-top: 5px; }
+.pump-source a { color: #93c5fd; text-decoration: underline; text-underline-offset: 2px; overflow-wrap: anywhere; }
+.pump-source a:hover { color: #bfdbfe; }
