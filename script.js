@@ -359,15 +359,18 @@ function updateNote(index) {
       const line = document.createElement("div");
       line.className = "pump-source";
       const sourceUrl = safeHttpUrl(source.url);
-      if (sourceUrl) addSourceLink(line, source.title || "Alkuperäinen lähde", sourceUrl);
-      else if (source.title) {
-        const title = document.createElement("span");
-        title.textContent = source.title;
-        line.appendChild(title);
+      if (sourceUrl || source.title) {
+        line.appendChild(document.createTextNode("📄 "));
+        if (sourceUrl) addSourceLink(line, source.title || "Alkuperäinen lähde", sourceUrl);
+        else {
+          const title = document.createElement("span");
+          title.textContent = source.title;
+          line.appendChild(title);
+        }
       }
       if (source.filename) {
-        if (line.hasChildNodes()) line.appendChild(document.createTextNode(" · "));
-        addSourceLink(line, "🔎 " + source.filename + " (Google-haku)", "https://www.google.com/search?q=" +
+        if (line.hasChildNodes()) line.appendChild(document.createTextNode(" — "));
+        addSourceLink(line, "🔎 tai kokeile etsiä Googlesta", "https://www.google.com/search?q=" +
           encodeURIComponent('"' + source.filename + '"'));
       }
       if (line.hasChildNodes()) noteDiv.appendChild(line);
