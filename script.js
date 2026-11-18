@@ -132,6 +132,16 @@ function addSourceLink(container, label, url) {
   container.appendChild(link);
 }
 
+function trackPumpSelection(pump) {
+  if (!pump || typeof window.goatcounter?.count !== "function") return;
+  // Only deliberate select changes count: defaults and URL restores are excluded.
+  window.goatcounter.count({
+    path: "pump/" + encodeURIComponent(pump),
+    title: pump,
+    event: true
+  });
+}
+
 function initControls() {
   const controls = document.getElementById("comparisonControls");
 
@@ -203,6 +213,7 @@ function initControls() {
     pumpSelect.addEventListener("change", () => {
       updateWaterOptions(i);
       updateCharts();
+      trackPumpSelection(pumpSelect.value);
     });
 
     waterSelect.addEventListener("change", () => {
