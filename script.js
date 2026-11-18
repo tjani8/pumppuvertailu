@@ -1,5 +1,7 @@
 let rawData = [];
 let allPumps = [];
+let pumpMetadata = {};
+const newPumpDays = 120;
 let visibleComparisons = 2;
 const maxComparisons = 6;
 
@@ -45,6 +47,15 @@ function copyShareLink() {
 }
 
 
+// Load metadata first so the initial selection list and shared URLs use the same data.
+fetch("pumps.json")
+  .then(response => {
+    if (!response.ok) throw new Error("pumps.json: HTTP " + response.status);
+    return response.json();
+  })
+  .then(data => { pumpMetadata = data; })
+  .catch(error => { console.warn("Pump metadata unavailable; using CSV notes:", error); })
+  .finally(() => {
 Papa.parse("data.csv", {
 // Papa.parse(csvUrl, {
   download: true,
@@ -66,6 +77,70 @@ Papa.parse("data.csv", {
 	updateInfoCard();
   }
 });
+  });
+
+function getPumpMetadata(pump) {
+  return pumpMetadata[pump] || {};
+}
+
+function isNewPump(pump) {
+  const added = getPumpMetadata(pump).added;
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(added || "")) return false;
+  const addedTime = Date.parse(added + "T00:00:00Z");
+  if (!Number.isFinite(addedTime)) return false;
+  const age = Date.now() - addedTime;
+  return age >= 0 && age < newPumpDays * 86400000;
+}
+
+function populatePumpOptions(select, pumps) {
+  select.replaceChildren();
+  const empty = document.createElement("option");
+  empty.value = "";
+  empty.textContent = "Ei valintaa";
+  select.appendChild(empty);
+
+  const newPumps = pumps.filter(isNewPump);
+  const otherPumps = pumps.filter(pump => !isNewPump(pump));
+  for (const [title, items] of [["Uudet pumput", newPumps], ["Muut pumput", otherPumps]]) {
+    if (!items.length) continue;
+    const group = document.createElement("optgroup");
+    group.label = title;
+    for (const pump of items) {
+      const option = document.createElement("option");
+      option.value = pump;
+      option.textContent = title === "Uudet pumput" ? "🟢 " + pump : pump;
+      group.appendChild(option);
+    }
+    select.appendChild(group);
+  }
+}
+
+function safeHttpUrl(value) {
+  if (typeof value !== "string" || !value.trim()) return null;
+  try {
+    const url = new URL(value);
+    return ["https:", "http:"].includes(url.protocol) ? url.href : null;
+  } catch { return null; }
+}
+
+function addSourceLink(container, label, url) {
+  const link = document.createElement("a");
+  link.href = url;
+  link.target = "_blank";
+  link.rel = "noopener noreferrer";
+  link.textContent = label;
+  container.appendChild(link);
+}
+
+function trackPumpSelection(pump) {
+  if (!pump || typeof window.goatcounter?.count !== "function") return;
+  // Only deliberate select changes count: defaults and URL restores are excluded.
+  window.goatcounter.count({
+    path: "pump/" + encodeURIComponent(pump),
+    title: pump,
+    event: true
+  });
+}
 
 function initControls() {
   const controls = document.getElementById("comparisonControls");
@@ -107,17 +182,7 @@ function initControls() {
     pumpSelect.id = `pumpSelect${i}`;
     pumpSelect.className = "pump-select";
 
-    const emptyPump = document.createElement("option");
-    emptyPump.value = "";
-    emptyPump.textContent = "Ei valintaa";
-    pumpSelect.appendChild(emptyPump);
-
-    pumps.forEach(pump => {
-      const option = document.createElement("option");
-      option.value = pump;
-      option.textContent = pump;
-      pumpSelect.appendChild(option);
-    });
+    populatePumpOptions(pumpSelect, pumps);
 
     const waterSelect = document.createElement("select");
     waterSelect.id = `waterSelect${i}`;
@@ -148,6 +213,7 @@ function initControls() {
     pumpSelect.addEventListener("change", () => {
       updateWaterOptions(i);
       updateCharts();
+      trackPumpSelection(pumpSelect.value);
     });
 
     waterSelect.addEventListener("change", () => {
@@ -217,19 +283,7 @@ function refreshPumpOptions(index) {
     pump.toLowerCase().includes(filterText)
   );
 
-  pumpSelect.innerHTML = "";
-
-  const emptyPump = document.createElement("option");
-  emptyPump.value = "";
-  emptyPump.textContent = "Ei valintaa";
-  pumpSelect.appendChild(emptyPump);
-
-  filteredPumps.forEach(pump => {
-    const option = document.createElement("option");
-    option.value = pump;
-    option.textContent = pump;
-    pumpSelect.appendChild(option);
-  });
+  populatePumpOptions(pumpSelect, filteredPumps);
 
   if (filteredPumps.includes(previousPump)) {
     pumpSelect.value = previousPump;
@@ -286,22 +340,53 @@ function updateNote(index) {
   const pump = document.getElementById(`pumpSelect${index}`).value;
   const water = Number(document.getElementById(`waterSelect${index}`).value);
   const noteDiv = document.getElementById(`note${index}`);
+  noteDiv.replaceChildren();
+  if (!pump) return;
 
-  if (!pump || isNaN(water)) {
-    noteDiv.textContent = "";
-    return;
+  const meta = getPumpMetadata(pump);
+  // Old CSV notes remain a fallback while metadata is being maintained.
+  const legacyNotes = [...new Set(
+    rawData.filter(r => r.pumppu === pump && r.vesi === water)
+      .map(r => r.huomautus).filter(Boolean)
+  )];
+  const note = typeof meta.note === "string" ? meta.note.trim() : "";
+  const displayedNote = note || legacyNotes.join(" / ");
+
+  if (displayedNote) {
+    const line = document.createElement("div");
+    line.textContent = "Huom: " + displayedNote;
+    noteDiv.appendChild(line);
   }
 
-  const notes = [...new Set(
-    rawData
-      .filter(r => r.pumppu === pump && r.vesi === water)
-      .map(r => r.huomautus)
-      .filter(Boolean)
-  )];
+  if (typeof meta.added === "string" && /^\d{4}-\d{2}-\d{2}$/.test(meta.added)) {
+    const [year, month, day] = meta.added.split("-");
+    const line = document.createElement("div");
+    line.textContent = `Lisätty vertailuun: ${day}.${month}.${year}`;
+    noteDiv.appendChild(line);
+  }
 
-  noteDiv.textContent = notes.length > 0
-    ? `Huom: ${notes.join(" / ")}`
-    : "";
+  if (Array.isArray(meta.sources)) {
+    for (const source of meta.sources) {
+      const line = document.createElement("div");
+      line.className = "pump-source";
+      const sourceUrl = safeHttpUrl(source.url);
+      if (sourceUrl || source.title) {
+        line.appendChild(document.createTextNode("Lähde: "));
+        if (sourceUrl) addSourceLink(line, source.title || "Alkuperäinen lähde", sourceUrl);
+        else {
+          const title = document.createElement("span");
+          title.textContent = source.title;
+          line.appendChild(title);
+        }
+      }
+      if (source.filename) {
+        if (line.hasChildNodes()) line.appendChild(document.createTextNode(" — "));
+        addSourceLink(line, "tai kokeile etsiä sitä Googlesta", "https://www.google.com/search?q=" +
+          encodeURIComponent('"' + source.filename + '"'));
+      }
+      if (line.hasChildNodes()) noteDiv.appendChild(line);
+    }
+  }
 }
 
 function applySelectionsFromUrl() {

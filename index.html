@@ -10,6 +10,20 @@
   <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
 
   <link rel="stylesheet" href="style.css">
+
+  <!-- Analytics is enabled only on the public website, not localhost or /dev/. -->
+  <script>
+    if (location.hostname === "tjani8.github.io" &&
+        location.pathname.startsWith("/pumppuvertailu/") &&
+        !location.pathname.startsWith("/pumppuvertailu/dev/")) {
+      window.goatcounter = { path: () => location.pathname };
+      const tracker = document.createElement("script");
+      tracker.async = true;
+      tracker.src = "https://gc.zgo.at/count.js";
+      tracker.dataset.goatcounter = "https://tjani.goatcounter.com/count";
+      document.head.appendChild(tracker);
+    }
+  </script>
 </head>
 <body>
 
@@ -53,6 +67,12 @@
          rel="noopener">
          Keskustele, ilmoita virheistä tai ehdota uusia pumppuja lampopumput.info-foorumilla
       </a>
+	  <p class="analytics-notice">
+	    Sivustolla on käytössä evästeetön
+	    <a href="https://www.goatcounter.com/" target="_blank" rel="noopener noreferrer">GoatCounter-kävijäseuranta</a>.<br>
+	    Sen avulla tilastoidaan sivukäyntejä, liikenteen lähteitä ja vertailuun valittuja lämpöpumppuja.<br>
+	    Tietoja käytetään sivuston kehittämiseen.
+	  </p>
 	</footer>
 	
 	
