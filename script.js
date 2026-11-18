@@ -371,7 +371,7 @@ function updateNote(index) {
       line.className = "pump-source";
       const sourceUrl = safeHttpUrl(source.url);
       if (sourceUrl || source.title) {
-        line.appendChild(document.createTextNode("📄 "));
+        line.appendChild(document.createTextNode("Lähde: "));
         if (sourceUrl) addSourceLink(line, source.title || "Alkuperäinen lähde", sourceUrl);
         else {
           const title = document.createElement("span");
