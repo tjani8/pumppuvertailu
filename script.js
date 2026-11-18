@@ -108,7 +108,7 @@ function populatePumpOptions(select, pumps) {
     for (const pump of items) {
       const option = document.createElement("option");
       option.value = pump;
-      option.textContent = pump;
+      option.textContent = title === "Uudet pumput" ? "🟢 " + pump : pump;
       group.appendChild(option);
     }
     select.appendChild(group);
@@ -367,7 +367,7 @@ function updateNote(index) {
       }
       if (source.filename) {
         if (line.hasChildNodes()) line.appendChild(document.createTextNode(" · "));
-        addSourceLink(line, source.filename, "https://www.google.com/search?q=" +
+        addSourceLink(line, "🔎 " + source.filename + " (Google-haku)", "https://www.google.com/search?q=" +
           encodeURIComponent('"' + source.filename + '"'));
       }
       if (line.hasChildNodes()) noteDiv.appendChild(line);
