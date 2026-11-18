@@ -270,7 +270,7 @@
     "sources": []
   },
   "Kaisai 14 kW mono KHC-14RY3-B, 3-v": {
-    "added": null,
+    "added": "2026-11-14",
     "note": "Arvot MAX taulukosta, sama laite kuin Midea",
     "sources": []
   },
@@ -285,7 +285,7 @@
     "sources": []
   },
   "Kaisai 16 kW R290 mono KHY-15PY3, 3-v": {
-    "added": null,
+    "added": "2026-11-14",
     "note": "Flow 1100l/h, sukua PHNIX",
     "sources": []
   },
@@ -565,12 +565,12 @@
     "sources": []
   },
   "Power World 11 kW Helios Pro H8 R290 mono PW08-DKXLRE3-H8 / PW08-DKXLRE1-H8, 1/3-v, MAX": {
-    "added": null,
+    "added": "2026-11-18",
     "note": "Arvot MAX taulukosta",
     "sources": []
   },
   "Power World 11 kW Helios Pro H8 R290 mono PW08-DKXLRE3-H8 / PW08-DKXLRE1-H8, 1/3-v, MIN": {
-    "added": null,
+    "added": "2026-11-18",
     "note": "Arvot MIN taulukosta",
     "sources": []
   },
@@ -585,12 +585,12 @@
     "sources": []
   },
   "Power World 13 kW Helios Pro H8 R290 mono PW10-DKXLRE3-H8 / PW10-DKXLRE1-H8, 1/3-v, MAX": {
-    "added": null,
+    "added": "2026-11-18",
     "note": "Arvot MAX taulukosta",
     "sources": []
   },
   "Power World 13 kW Helios Pro H8 R290 mono PW10-DKXLRE3-H8 / PW10-DKXLRE1-H8, 1/3-v, MIN": {
-    "added": null,
+    "added": "2026-11-18",
     "note": "Arvot MIN taulukosta",
     "sources": []
   },
@@ -615,12 +615,12 @@
     "sources": []
   },
   "Power World 17 kW Helios Pro H8 R290 mono PW12-DKXLRE3-H8, 3-v, MAX": {
-    "added": null,
+    "added": "2026-11-18",
     "note": "Arvot MAX taulukosta",
     "sources": []
   },
   "Power World 17 kW Helios Pro H8 R290 mono PW12-DKXLRE3-H8, 3-v, MIN": {
-    "added": null,
+    "added": "2026-11-18",
     "note": "Arvot MIN taulukosta",
     "sources": []
   },
@@ -635,22 +635,22 @@
     "sources": []
   },
   "Power World 20 kW Helios Pro H8 R290 mono PW14-DKXLRE3-H8, 3-v, MAX": {
-    "added": null,
+    "added": "2026-11-18",
     "note": "Arvot MAX taulukosta",
     "sources": []
   },
   "Power World 20 kW Helios Pro H8 R290 mono PW14-DKXLRE3-H8, 3-v, MIN": {
-    "added": null,
+    "added": "2026-11-18",
     "note": "Arvot MIN taulukosta",
     "sources": []
   },
   "Power World 22 kW Helios Pro H8 R290 mono PW16-DKXLRE3-H8, 3-v, MAX": {
-    "added": null,
+    "added": "2026-11-18",
     "note": "Arvot MAX taulukosta",
     "sources": []
   },
   "Power World 22 kW Helios Pro H8 R290 mono PW16-DKXLRE3-H8, 3-v, MIN": {
-    "added": null,
+    "added": "2026-11-18",
     "note": "Arvot MIN taulukosta",
     "sources": []
   },
@@ -735,27 +735,45 @@
     "sources": []
   },
   "SPRSUN 09 kW R290 mono CGK-030V4P-B, 3-v": {
-    "added": null,
-    "note": "",
-    "sources": []
+    "added": "2026-11-18",
+    "note": "Testing data arvot mistä sattuu",
+    "sources": [
+		{
+			"title": "Data sheet",
+			"url": "http://s3.gy.digital/thermovent/uploads/product_file/data/1647/R290 Greenergy Series Data Sheet.pdf",
+			"filename": "R290 Greenergy Series Data Sheet.pdf"
+		}
+	]
   },
   "SPRSUN 11 kW R290 mono CGK-040V4P-B, 3-v": {
-    "added": null,
+    "added": "2026-11-18",
     "note": "−15 °C / 50 °C varmaan väärä arvo lähteessä",
-    "sources": []
+    "sources": [
+		{
+			"title": "",
+			"url": "http://s3.gy.digital/thermovent/uploads/product_file/data/1647/R290 Greenergy Series Data Sheet.pdf",
+			"filename": "R290 Greenergy Series Data Sheet.pdf"
+		}
+	]
   },
   "SPRSUN 15 kW R290 mono CGK-050V4P-B, 3-v": {
-    "added": null,
+    "added": "2026-11-18",
     "note": "",
-    "sources": []
+    "sources": [
+		{
+			"title": "Data sheet",
+			"url": "http://s3.gy.digital/thermovent/uploads/product_file/data/1647/R290 Greenergy Series Data Sheet.pdf",
+			"filename": "R290 Greenergy Series Data Sheet.pdf"
+		}
+	]
   },
   "SPRSUN 25 kW R290 mono CGK-080V4-B, 3-v": {
-    "added": null,
+    "added": "2026-11-18",
     "note": "",
     "sources": []
   },
   "SPRSUN 30 kW R290 mono CGK-100V4-B, 3-v": {
-    "added": null,
+    "added": "2026-11-18",
     "note": "",
     "sources": []
   },

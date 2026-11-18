@@ -1,6 +1,7 @@
 :root {
   --accent: #095725;
   --accent-hover: #1c9c4b;
+  --link-hover: #10E85F;
 
   --bg-main: #242e2b;
   --bg-card: #18251f;
@@ -253,9 +254,10 @@ button {
 
 .site-footer a:hover {
     text-decoration: underline;
+	color: var(--link-hover);
 }
 
 /* Pump metadata, displayed under each selected pump */
 .note > div { margin-top: 5px; }
-.pump-source a { color: #93c5fd; text-decoration: underline; text-underline-offset: 2px; overflow-wrap: anywhere; }
-.pump-source a:hover { color: #bfdbfe; }
+.pump-source a { color: var(--accent-hover); text-decoration: none;}
+.pump-source a:hover { text-decoration: underline; color: var(--link-hover); }

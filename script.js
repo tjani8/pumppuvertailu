@@ -370,7 +370,7 @@ function updateNote(index) {
       }
       if (source.filename) {
         if (line.hasChildNodes()) line.appendChild(document.createTextNode(" — "));
-        addSourceLink(line, "🔎 tai kokeile etsiä Googlesta", "https://www.google.com/search?q=" +
+        addSourceLink(line, "tai kokeile etsiä sitä Googlesta", "https://www.google.com/search?q=" +
           encodeURIComponent('"' + source.filename + '"'));
       }
       if (line.hasChildNodes()) noteDiv.appendChild(line);
