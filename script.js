@@ -85,7 +85,7 @@ function getPumpMetadata(pump) {
 
 function isNewPump(pump) {
   const added = getPumpMetadata(pump).added;
-  if (!/^\\d{4}-\\d{2}-\\d{2}$/.test(added || "")) return false;
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(added || "")) return false;
   const addedTime = Date.parse(added + "T00:00:00Z");
   if (!Number.isFinite(addedTime)) return false;
   const age = Date.now() - addedTime;
@@ -347,7 +347,7 @@ function updateNote(index) {
     noteDiv.appendChild(line);
   }
 
-  if (typeof meta.added === "string" && /^\\d{4}-\\d{2}-\\d{2}$/.test(meta.added)) {
+  if (typeof meta.added === "string" && /^\d{4}-\d{2}-\d{2}$/.test(meta.added)) {
     const [year, month, day] = meta.added.split("-");
     const line = document.createElement("div");
     line.textContent = `Lisätty vertailuun: ${day}.${month}.${year}`;
